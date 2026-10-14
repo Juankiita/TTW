@@ -139,6 +139,38 @@ html:not([data-theme="dark"]) .on-ink :focus-visible{outline-color:var(--ink)}
 [data-theme="dark"] .hero-countdown__label{color:#8f7dff}
 @media (prefers-reduced-motion:reduce){.hero-countdown__unit{transition:none}}
 </style>
+<style id="modern-ui">
+/* ——— Hero: mismo lenguaje de la primera sección ——— */
+.poster-hero{background:radial-gradient(1100px 560px at 82% 18%, rgba(16,0,255,.09), transparent 60%),radial-gradient(900px 520px at 8% 92%, rgba(40,173,29,.07), transparent 62%),var(--paper)}
+.poster-left{animation:hero-in .7s cubic-bezier(.2,.7,.3,1) both}
+.poster-panel{place-items:center;margin:clamp(1rem,2vw,2rem);border-radius:clamp(1.25rem,2.5vw,2rem);background:linear-gradient(140deg,var(--blue) 0%,#0a00c2 100%);box-shadow:0 32px 90px -24px rgba(16,0,255,.55);animation:hero-in .7s .12s cubic-bezier(.2,.7,.3,1) both}
+.poster-art-svg{filter:drop-shadow(0 28px 60px rgba(0,0,0,.38))}
+.poster-art-stage{animation:stone-float 7s ease-in-out infinite alternate}
+@keyframes stone-float{from{transform:translateY(-8px) rotate(-.6deg)}to{transform:translateY(8px) rotate(.6deg)}}
+@keyframes hero-in{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.date-number{background:linear-gradient(120deg,var(--ink) 20%,var(--blue) 85%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.poster-actions .btn{border-radius:999px;box-shadow:0 14px 34px -14px rgba(0,0,0,.45)}
+[data-theme="dark"] .poster-hero{background:radial-gradient(1100px 560px at 82% 18%, rgba(107,91,255,.14), transparent 60%),radial-gradient(900px 520px at 8% 92%, rgba(76,209,55,.08), transparent 62%),var(--paper)}
+[data-theme="dark"] .poster-panel{background:linear-gradient(140deg,#2417d6,#0a008f);box-shadow:0 32px 90px -24px rgba(0,0,0,.8)}
+[data-theme="dark"] .date-number{-webkit-text-fill-color:transparent;background-image:linear-gradient(120deg,var(--ink) 20%,#8f7dff 85%)}
+/* ——— Resto del sitio ——— */
+.btn{border-radius:999px}
+.btn:hover{box-shadow:0 12px 28px -12px rgba(0,0,0,.35)}
+.eyebrow--tag{border-radius:999px}
+.card{border:1px solid var(--line);border-radius:1.25rem;box-shadow:0 18px 45px -18px rgba(0,0,0,.18)}
+.card:hover{box-shadow:0 26px 60px -22px rgba(16,0,255,.32)!important;transform:translateY(-4px)}
+.section-title{background:linear-gradient(120deg,var(--ink) 35%,var(--blue) 95%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+[data-theme="dark"] .section-title{-webkit-text-fill-color:transparent;background-image:linear-gradient(120deg,var(--ink) 35%,#8f7dff 95%)}
+.cta{background:linear-gradient(140deg,var(--blue) 0%,#0a00c2 100%)}
+.cta .countdown__unit{background:rgba(255,255,255,.1);border-radius:1rem;padding:.75rem 1.1rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.cta .countdown__value{background:linear-gradient(120deg,#fff 30%,#cfcfff 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.luma-embed{border:1px solid rgba(255,255,255,.25);border-radius:1.25rem;box-shadow:0 30px 80px -30px rgba(0,0,0,.55)}
+.marquee{border-block:0;background:linear-gradient(90deg,var(--blue) 0%,#0a00c2 50%,var(--blue) 100%)}
+[data-theme="dark"] .marquee{background:linear-gradient(90deg,#6b5bff 0%,#4a3ad6 50%,#6b5bff 100%)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1)}
+.reveal.in-view{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.poster-left,.poster-panel,.poster-art-stage{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+</style>
 </head>
 <body id="top" class="antialiased">
 <div hidden=""></div><header class="site-header"><div class="shell"><a class="site-wordmark" href="#top">Tandil Tech Week <span class="text-[var(--blue)]">2026</span></a><nav class="site-nav" aria-label="Secciones"><a href="#envivo" style="color:#dc2626;font-weight:700;">EN VIVO</a><a href="#agenda">Agenda</a><a href="#speakers">Speakers</a><a href="#organizan">Organizan</a><a href="#acompanan">Acompañan</a></nav><div class="header-actions"><a href="https://instagram.com/tandiltechweek" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Instagram @tandiltechweek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a><a href="https://x.com/tandiltechweek" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="X @tandiltechweek"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
@@ -590,6 +622,21 @@ c167 2 213 0 221 -11 10 -12 18 -48 39 -192 3 -22 10 -46 16 -52 11 -15 402
   }
   tick();
   var iv=setInterval(tick,1000);
+})();
+</script>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var els=[].slice.call(document.querySelectorAll('.section .section-head, .section .card-grid, .cta .shell > *'));
+  if(!els.length)return;
+  els.forEach(function(el){el.classList.add('reveal')});
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in-view');io.unobserve(en.target)}
+    });
+  },{threshold:.15});
+  els.forEach(function(el){io.observe(el)});
 })();
 </script>
 </body>
