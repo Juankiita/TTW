@@ -51,6 +51,12 @@
 #notify-msg.err{color:#dc2626;font-weight:600}
 [data-theme="dark"] #notify-card{background:var(--soft);border-color:transparent;box-shadow:0 12px 40px rgba(0,0,0,.5)}
 [data-theme="dark"] #notify-email{border-color:var(--line);background:var(--paper)}
+[data-theme="dark"] #notify-close{border-color:transparent;background:transparent;color:var(--ink)}
+[data-theme="dark"] #notify-email{background:var(--paper);color:var(--ink)}
+[data-theme="dark"] #theme-toggle[data-active="true"] span{background:#fff}
+#theme-toggle span{position:absolute;top:50%;left:.2rem;transform:translateY(-50%);width:1rem;height:1rem;border-radius:50%;background:var(--ink);transition:left .3s cubic-bezier(.34,1.4,.64,1)}
+#theme-toggle[data-active="true"]{background:var(--ink)}
+#theme-toggle[data-active="true"] span{left:calc(100% - 1.2rem);background:var(--paper)}
 #event-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,.55)}
 #event-overlay[hidden]{display:none}
 #event-card{background:var(--paper);border:2px solid var(--ink);box-shadow:5px 5px 0 0 var(--ink);max-width:30rem;width:100%;padding:clamp(1.5rem,3vw,2.5rem);position:relative;animation:notify-in .25s cubic-bezier(.2,.7,.3,1)}
@@ -82,23 +88,18 @@
 [data-theme="dark"] #sponsor-card{background:var(--soft);border-color:transparent;box-shadow:0 12px 40px rgba(0,0,0,.5)}
 [data-theme="dark"] #sponsor-form input{border-color:var(--line);background:var(--paper)}
 [data-theme="dark"] #sponsor-close{border-color:transparent;background:transparent;color:var(--ink)}
-[data-theme="dark"] #notify-close{border-color:transparent;background:transparent;color:var(--ink)}
-[data-theme="dark"] #notify-email{background:var(--paper);color:var(--ink)}
-[data-theme="dark"] #theme-toggle[data-active="true"] span{background:#fff}
-#theme-toggle span{position:absolute;top:50%;left:.2rem;transform:translateY(-50%);width:1rem;height:1rem;border-radius:50%;background:var(--ink);transition:left .3s cubic-bezier(.34,1.4,.64,1)}
-#theme-toggle[data-active="true"]{background:var(--ink)}
-#theme-toggle[data-active="true"] span{left:calc(100% - 1.2rem);background:var(--paper)}
+[data-theme="dark"] .site-footer{background:#141414;color:#f0f0f0;border-top:1px solid var(--line)}
+html:not([data-theme="dark"]) .site-footer{background:var(--paper);color:var(--ink);border-top:1px solid var(--line)}
+html:not([data-theme="dark"]) .site-footer .footer-meta{color:var(--ink-muted)}
+html:not([data-theme="dark"]) .on-ink :focus-visible{outline-color:var(--ink)}
+[data-theme="dark"] .site-footer .footer-meta{color:#a0a0a0}
+[data-theme="dark"] .site-footer .footer-wordmark{color:#f0f0f0}
+[data-theme="dark"] .on-ink :focus-visible{outline-color:#f0f0f0}
 .theme-wipe{position:fixed;inset:0;z-index:9999;pointer-events:none;transform:translateX(-100%)}
 .theme-wipe.in{animation:theme-wipe-in .5s cubic-bezier(.2,.7,.3,1) forwards}
 .theme-wipe.out{animation:theme-wipe-out .5s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes theme-wipe-in{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 @keyframes theme-wipe-out{from{transform:translateX(0)}to{transform:translateX(100%)}}
-.poster-panel{grid-area:1/1/auto/-1;place-items:stretch}
-.poster-art-stage{--art-w:100%;width:100%;height:100%;container-type:size}
-.poster-art-content .stone-year{font-size:5.2cqh;margin-bottom:.9cqh}
-.poster-art-content .stone-wordmark{font-size:15cqh}
-.poster-art-content .stone-message{font-size:4.9cqh}
-.poster-left{position:relative;z-index:1}
 </style>
 <script>
 (function(){
@@ -110,13 +111,49 @@
   }
 })();
 </script>
+<style>
+/* Hero modernizado */
+.poster-hero{background:radial-gradient(1100px 560px at 82% 18%, rgba(16,0,255,.09), transparent 60%),radial-gradient(900px 520px at 8% 92%, rgba(40,173,29,.07), transparent 62%),var(--paper)}
+.poster-left{animation:hero-in .7s cubic-bezier(.2,.7,.3,1) both}
+.poster-panel{place-items:center;margin:clamp(1rem,2vw,2rem);border-radius:clamp(1.25rem,2.5vw,2rem);background:linear-gradient(140deg,var(--blue) 0%,#0a00c2 100%);box-shadow:0 32px 90px -24px rgba(16,0,255,.55);animation:hero-in .7s .12s cubic-bezier(.2,.7,.3,1) both}
+.poster-art-svg{filter:drop-shadow(0 28px 60px rgba(0,0,0,.38))}
+.poster-art-stage{animation:stone-float 7s ease-in-out infinite alternate}
+@keyframes stone-float{from{transform:translateY(-8px) rotate(-.6deg)}to{transform:translateY(8px) rotate(.6deg)}}
+@keyframes hero-in{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.date-number{background:linear-gradient(120deg,var(--ink) 20%,var(--blue) 85%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.poster-actions .btn{border-radius:999px;box-shadow:0 14px 34px -14px rgba(0,0,0,.45)}
+[data-theme="dark"] .poster-hero{background:radial-gradient(1100px 560px at 82% 18%, rgba(107,91,255,.14), transparent 60%),radial-gradient(900px 520px at 8% 92%, rgba(76,209,55,.08), transparent 62%),var(--paper)}
+[data-theme="dark"] .poster-panel{background:linear-gradient(140deg,#2417d6,#0a008f);box-shadow:0 32px 90px -24px rgba(0,0,0,.8)}
+[data-theme="dark"] .date-number{-webkit-text-fill-color:transparent;background-image:linear-gradient(120deg,var(--ink) 20%,#8f7dff 85%)}
+@media (prefers-reduced-motion:reduce){.poster-left,.poster-panel,.poster-art-stage{animation:none}}
+.hero-countdown{margin-top:clamp(1.5rem,3vh,2.5rem);display:grid;gap:var(--space-s)}
+.hero-countdown__label{font-size:var(--text-label);letter-spacing:var(--tracking-label);text-transform:uppercase;font-weight:700;color:var(--blue)}
+.hero-countdown__units{display:flex;gap:clamp(.5rem,1.2vw,1rem);flex-wrap:wrap}
+.hero-countdown__unit{display:grid;gap:.35rem;justify-items:center;background:var(--paper);border:2px solid var(--ink);border-radius:1rem;padding:clamp(.6rem,1.2vw,1rem) clamp(.75rem,1.5vw,1.25rem);box-shadow:0 14px 34px -14px rgba(0,0,0,.25);min-width:4.5rem;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s}
+.hero-countdown__unit:hover{transform:translateY(-4px);box-shadow:0 22px 44px -16px rgba(16,0,255,.35)}
+.hero-countdown__value{font-size:clamp(1.75rem,3.2vw,3rem);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1;background:linear-gradient(120deg,var(--ink) 20%,var(--blue) 85%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero-countdown__unit-label{font-size:var(--text-label);letter-spacing:var(--tracking-label);text-transform:uppercase;font-weight:600;color:var(--ink-muted)}
+[data-theme="dark"] .hero-countdown__unit{background:var(--soft);box-shadow:0 14px 34px -14px rgba(0,0,0,.6)}
+[data-theme="dark"] .hero-countdown__unit:hover{box-shadow:0 22px 44px -16px rgba(107,91,255,.45)}
+[data-theme="dark"] .hero-countdown__value{background-image:linear-gradient(120deg,var(--ink) 20%,#8f7dff 85%)}
+[data-theme="dark"] .hero-countdown__label{color:#8f7dff}
+@media (prefers-reduced-motion:reduce){.hero-countdown__unit{transition:none}}
+</style>
 </head>
 <body id="top" class="antialiased">
 <div hidden=""></div><header class="site-header"><div class="shell"><a class="site-wordmark" href="#top">Tandil Tech Week <span class="text-[var(--blue)]">2026</span></a><nav class="site-nav" aria-label="Secciones"><a href="#envivo" style="color:#dc2626;font-weight:700;">EN VIVO</a><a href="#agenda">Agenda</a><a href="#speakers">Speakers</a><a href="#organizan">Organizan</a><a href="#acompanan">Acompañan</a></nav><div class="header-actions"><a href="https://instagram.com/tandiltechweek" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="Instagram @tandiltechweek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a><a href="https://x.com/tandiltechweek" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="X @tandiltechweek"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
 <button id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" title="Modo oscuro/claro" style="position:relative;width:2.75rem;height:1.5rem;border-radius:999px;border:1.5px solid var(--ink);background:var(--paper);cursor:pointer;padding:0;transition:background .2s,border-color .2s;">
 <span aria-hidden="true"></span>
 </button>
-</div></div></header><main><section class="poster-hero"><div class="poster-left"><div class="poster-headline"><p class="poster-date"><time class="date-number" dateTime="2026-10-14">14&amp;15</time><span class="date-month">OCT.</span></p><dl class="poster-info"><dt><a href="/hacking-day">Hacking Day</a></dt><dd>14 Octubre · Campus Universitario UNICEN</dd><dt><a href="/startup-day">Startup Day</a></dt><dd>15 Octubre · Distrito Avellaneda</dd></dl></div><div class="poster-foot"><div class="poster-actions"><button id="notify-open" type="button" class="btn btn--green" style="grid-column:1/-1;cursor:pointer;">🔔 Notificarme de próximos eventos <span aria-hidden="true" class="arrow">→</span></button><a class="btn btn--green" href="#agenda" style="grid-column:1/-1;">Cronograma <span aria-hidden="true" class="arrow">→</span></a></div><div class="poster-social"><span>Seguinos</span><a href="https://instagram.com/tandiltechweek" target="_blank" rel="noopener noreferrer" aria-label="Instagram @tandiltechweek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg><span>@tandiltechweek</span></a><a href="https://x.com/tandiltechweek" target="_blank" rel="noopener noreferrer" aria-label="X @tandiltechweek"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg><span>@tandiltechweek</span></a></div></div></div><div class="poster-panel"><div class="poster-art-stage"><svg class="poster-art-svg" viewBox="0 0 965 1020" preserveAspectRatio="none" aria-hidden="true"><g transform="translate(0, 1020) scale(0.1, -0.1)" fill="var(--paper)"><path d="M2960 9266 c-177 -66 -372 -222 -503 -403 -84 -118 -232 -360 -308 -508 -37 -71 -108 -229 -158 -350 -49 -121 -123 -290 -164 -375 -42 -85 -96 -217 -121 -292 -25 -76 -68 -182 -95 -237 -28 -54 -68 -143 -91 -197 -53 -128 -103 -220 -195 -359 -144 -219 -246 -345 -366 -455 -310 -284 -475 -469 -515 -581 -59 -169 -27 -822 66 -1329 50 -273 59 -366 80 -778 36 -725 46 -813 110 -902 53 -74 231 -80 490 -17 80 20 199 48 265 62 142 32 191 50 395 145 294 136 584 247 785 300 66 17 226 62 355 100 608 177 790 226 1002 269 79 16 157 33 173 37 27 6 23 0 -44 -71 -76 -80 -229 -305 -341 -500 -86 -149 -154 -293 -250 -530 -45 -110 -112 -263 -150 -340 -38 -77 -91 -205 -118 -285 -27 -80 -70 -186 -95 -236 -25 -50 -66 -139 -92 -200 -60 -142 -110 -233 -202 -373 -179 -273 -230 -331 -559 -638 -72 -67 -150 -145 -174 -172 l-42 -51 3776 0 3776 0 0 979 0 978 -122 58 c-68 32 -213 97 -323 146 -110 48 -258 115 -330 149 -182 86 -250 114 -585 235 -162 59 -416 156 -565 216 -186 75 -331 125 -466 163 -191 53 -236 63 -464 106 -152 29 -279 82 -495 206 -492 281 -641 329 -1125 354 -115 6 -217 13 -225 16 -8 3 28 22 80 44 52 21 158 68 235 105 77 37 226 108 330 157 105 49 261 128 349 175 252 137 394 193 691 272 343 90 718 244 880 359 98 70 285 233 382 334 49 52 118 142 175 229 107 164 187 254 301 340 104 79 171 112 352 175 349 121 406 151 470 247 96 145 136 437 77 571 -30 67 -159 258 -236 348 -92 108 -460 380 -713 526 -109 64 -426 218 -638 311 -104 46 -282 126 -395 178 -243 113 -229 107 -595 240 -159 58 -405 151 -545 208 -322 130 -592 211 -845 255 -245 42 -336 79 -663 267 -385 221 -579 280 -993 303 -107 6 -243 15 -304 20 -154 14 -342 11 -385 -4z"></path></g></svg><div class="poster-art-content"><div class="stone-top-box"><span class="stone-year">2026</span><h1 class="stone-wordmark"><span class="line-tandil">Tandil</span> <span class="line-tech">Tech</span> <span class="line-week">Week</span></h1></div><div class="stone-bottom-box"><p class="stone-message">Un encuentro<br/>para <em>construir</em><br/><em>lo que viene.</em></p></div></div></div></div></section><div class="marquee" aria-hidden="true"><div class="marquee-track"><span>UNICEN CAMPUS<em>✦</em></span><span>DISTRITO AVELLANEDA<em>✦</em></span><span>HACKING DAY<em>✦</em></span><span>CIBERSEGURIDAD<em>✦</em></span><span>STARTUP DAY<em>✦</em></span><span>AGRITECH &amp; BIO<em>✦</em></span><span>SOFTWARE &amp; AI<em>✦</em></span><span>VENTURE CAPITAL<em>✦</em></span><span>POLO CIENTÍFICO<em>✦</em></span><span>FOUNDERS &amp; BUILDERS<em>✦</em></span><span>UNICEN CAMPUS<em>✦</em></span><span>DISTRITO AVELLANEDA<em>✦</em></span><span>HACKING DAY<em>✦</em></span><span>CIBERSEGURIDAD<em>✦</em></span><span>STARTUP DAY<em>✦</em></span><span>AGRITECH &amp; BIO<em>✦</em></span><span>SOFTWARE &amp; AI<em>✦</em></span><span>VENTURE CAPITAL<em>✦</em></span><span>POLO CIENTÍFICO<em>✦</em></span><span>FOUNDERS &amp; BUILDERS<em>✦</em></span></div></div><div><section id="envivo" class="section" style="background:#FCD9D9;">
+</div></div></header><main><section class="poster-hero"><div class="poster-left"><div class="poster-headline"><p class="poster-date"><time class="date-number" dateTime="2026-10-14">14&amp;15</time><span class="date-month">OCT.</span></p><div class="hero-countdown" role="timer" aria-label="Cuenta regresiva al evento del 15 de octubre">
+<p class="hero-countdown__label">El próximo evento arranca en</p>
+<div class="hero-countdown__units">
+<div class="hero-countdown__unit"><span class="hero-countdown__value" id="cd-days">––</span><span class="hero-countdown__unit-label">Días</span></div>
+<div class="hero-countdown__unit"><span class="hero-countdown__value" id="cd-hours">––</span><span class="hero-countdown__unit-label">Horas</span></div>
+<div class="hero-countdown__unit"><span class="hero-countdown__value" id="cd-mins">––</span><span class="hero-countdown__unit-label">Min</span></div>
+<div class="hero-countdown__unit"><span class="hero-countdown__value" id="cd-secs">––</span><span class="hero-countdown__unit-label">Seg</span></div>
+</div>
+</div></div><div class="poster-foot"><div class="poster-actions"><button id="notify-open" type="button" class="btn btn--green" style="grid-column:1/-1;cursor:pointer;">🔔 Notificarme de próximos eventos <span aria-hidden="true" class="arrow">→</span></button><a class="btn btn--green" href="#agenda" style="grid-column:1/-1;">Cronograma <span aria-hidden="true" class="arrow">→</span></a></div><div class="poster-social"><span>Seguinos</span><a href="https://instagram.com/tandiltechweek" target="_blank" rel="noopener noreferrer" aria-label="Instagram @tandiltechweek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg><span>@tandiltechweek</span></a><a href="https://x.com/tandiltechweek" target="_blank" rel="noopener noreferrer" aria-label="X @tandiltechweek"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg><span>@tandiltechweek</span></a></div></div></div><div class="poster-panel"><div class="poster-art-stage"><svg class="poster-art-svg" viewBox="0 0 965 1020" aria-hidden="true"><g transform="translate(0, 1020) scale(0.1, -0.1)" fill="var(--paper)"><path d="M2960 9266 c-177 -66 -372 -222 -503 -403 -84 -118 -232 -360 -308 -508 -37 -71 -108 -229 -158 -350 -49 -121 -123 -290 -164 -375 -42 -85 -96 -217 -121 -292 -25 -76 -68 -182 -95 -237 -28 -54 -68 -143 -91 -197 -53 -128 -103 -220 -195 -359 -144 -219 -246 -345 -366 -455 -310 -284 -475 -469 -515 -581 -59 -169 -27 -822 66 -1329 50 -273 59 -366 80 -778 36 -725 46 -813 110 -902 53 -74 231 -80 490 -17 80 20 199 48 265 62 142 32 191 50 395 145 294 136 584 247 785 300 66 17 226 62 355 100 608 177 790 226 1002 269 79 16 157 33 173 37 27 6 23 0 -44 -71 -76 -80 -229 -305 -341 -500 -86 -149 -154 -293 -250 -530 -45 -110 -112 -263 -150 -340 -38 -77 -91 -205 -118 -285 -27 -80 -70 -186 -95 -236 -25 -50 -66 -139 -92 -200 -60 -142 -110 -233 -202 -373 -179 -273 -230 -331 -559 -638 -72 -67 -150 -145 -174 -172 l-42 -51 3776 0 3776 0 0 979 0 978 -122 58 c-68 32 -213 97 -323 146 -110 48 -258 115 -330 149 -182 86 -250 114 -585 235 -162 59 -416 156 -565 216 -186 75 -331 125 -466 163 -191 53 -236 63 -464 106 -152 29 -279 82 -495 206 -492 281 -641 329 -1125 354 -115 6 -217 13 -225 16 -8 3 28 22 80 44 52 21 158 68 235 105 77 37 226 108 330 157 105 49 261 128 349 175 252 137 394 193 691 272 343 90 718 244 880 359 98 70 285 233 382 334 49 52 118 142 175 229 107 164 187 254 301 340 104 79 171 112 352 175 349 121 406 151 470 247 96 145 136 437 77 571 -30 67 -159 258 -236 348 -92 108 -460 380 -713 526 -109 64 -426 218 -638 311 -104 46 -282 126 -395 178 -243 113 -229 107 -595 240 -159 58 -405 151 -545 208 -322 130 -592 211 -845 255 -245 42 -336 79 -663 267 -385 221 -579 280 -993 303 -107 6 -243 15 -304 20 -154 14 -342 11 -385 -4z"></path></g></svg><div class="poster-art-content"><div class="stone-top-box"><span class="stone-year">2026</span><h1 class="stone-wordmark"><span class="line-tandil">Tandil</span> <span class="line-tech">Tech</span> <span class="line-week">Week</span></h1></div><div class="stone-bottom-box"><p class="stone-message">Un encuentro<br/>para <em>construir</em><br/><em>lo que viene.</em></p></div></div></div></div></section><div class="marquee" aria-hidden="true"><div class="marquee-track"><span>UNICEN CAMPUS<em>✦</em></span><span>DISTRITO AVELLANEDA<em>✦</em></span><span>HACKING DAY<em>✦</em></span><span>CIBERSEGURIDAD<em>✦</em></span><span>STARTUP DAY<em>✦</em></span><span>AGRITECH &amp; BIO<em>✦</em></span><span>SOFTWARE &amp; AI<em>✦</em></span><span>VENTURE CAPITAL<em>✦</em></span><span>POLO CIENTÍFICO<em>✦</em></span><span>FOUNDERS &amp; BUILDERS<em>✦</em></span><span>UNICEN CAMPUS<em>✦</em></span><span>DISTRITO AVELLANEDA<em>✦</em></span><span>HACKING DAY<em>✦</em></span><span>CIBERSEGURIDAD<em>✦</em></span><span>STARTUP DAY<em>✦</em></span><span>AGRITECH &amp; BIO<em>✦</em></span><span>SOFTWARE &amp; AI<em>✦</em></span><span>VENTURE CAPITAL<em>✦</em></span><span>POLO CIENTÍFICO<em>✦</em></span><span>FOUNDERS &amp; BUILDERS<em>✦</em></span></div></div><div><section id="envivo" class="section" style="background:#FCD9D9;">
 <style>.envivo-layout{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-l);align-items:stretch}.envivo-col{display:flex;flex-direction:column;min-width:0}.envivo-fade{position:relative;overflow:hidden;border-radius:var(--radius-lg);flex:1;min-height:18rem}.envivo-fade img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s cubic-bezier(.2,.7,.3,1)}.envivo-fade img.is-active{opacity:1}@media (max-width:799px){.envivo-layout{grid-template-columns:1fr}}</style>
 <div class="shell">
 <div class="envivo-layout">
@@ -529,6 +566,30 @@ c167 2 213 0 221 -11 10 -12 18 -48 39 -192 3 -22 10 -46 16 -52 11 -15 402
       setTimeout(function(){wipe.remove();animating=false;},500);
     },500);
   });
+})();
+</script>
+<script>
+(function(){
+  var now=new Date();
+  var target=new Date(now.getFullYear(),9,15,9,0,0).getTime(); // 15 de octubre, 09:00
+  var els={d:document.getElementById('cd-days'),h:document.getElementById('cd-hours'),m:document.getElementById('cd-mins'),s:document.getElementById('cd-secs')};
+  if(!els.d)return;
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var diff=target-Date.now();
+    if(diff<=0){
+      els.d.textContent='00';els.h.textContent='00';els.m.textContent='00';els.s.textContent='00';
+      var l=document.querySelector('.hero-countdown__label');
+      if(l)l.textContent='¡El evento está en curso!';
+      clearInterval(iv);return;
+    }
+    els.d.textContent=pad(Math.floor(diff/864e5));
+    els.h.textContent=pad(Math.floor(diff%864e5/36e5));
+    els.m.textContent=pad(Math.floor(diff%36e5/6e4));
+    els.s.textContent=pad(Math.floor(diff%6e4/1e3));
+  }
+  tick();
+  var iv=setInterval(tick,1000);
 })();
 </script>
 </body>
